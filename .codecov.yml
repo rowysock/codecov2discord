@@ -1,0 +1,5 @@
+coverage:
+  notify:
+    webhook:
+      default:
+        url: "http://89.72.240.160:8080/discord-webhook/333327638238330880/Oh7Eu5mnnh96p1U-LvJOBSeDTkQ6HebS0VJj0h6f2uUUFWPqR0xY_Rw5EP3TwLwISdX4"

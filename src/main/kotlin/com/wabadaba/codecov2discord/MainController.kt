@@ -1,6 +1,9 @@
 package com.wabadaba.codecov2discord
 
+import org.slf4j.LoggerFactory
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.client.RestTemplate
@@ -9,11 +12,18 @@ import java.awt.Color
 
 @RestController
 class MainController {
-    val webhookURL = "https://discordapp.com/api/webhooks/333327638238330880/Oh7Eu5mnnh96p1U-LvJOBSeDTkQ6HebS0VJj0h6f2uUUFWPqR0xY_Rw5EP3TwLwISdX4"
+
+    val logger = LoggerFactory.getLogger(this::class.java)
+
     private val iconUrl = "https://chocolatey.org/content/packageimages/codecov.1.0.1.png"
 
-    @RequestMapping("/test")
-    fun test() {
+    @RequestMapping("/discord-webhook/{id}/{token}")
+    fun test(
+            @PathVariable id: String,
+            @PathVariable token: String,
+            @RequestBody body: String
+    ) {
+        logger.info(body)
         val template = RestTemplate(HttpComponentsClientHttpRequestFactory())
         val mask: Int = 0xFFFFFF
         val color = Color.CYAN.rgb and mask
@@ -32,7 +42,7 @@ class MainController {
                 "Username",
                 iconUrl,
                 listOf(embed))
-        template.postForEntity(webhookURL, payload, String::class.java)
+        template.postForEntity("https://discordapp.com/api/webhooks/$id/$token", payload, String::class.java)
     }
 }
 
