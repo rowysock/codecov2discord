@@ -47,4 +47,5 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile 'net.dv8tion:JDA:3.0.0_156'
 	compile 'com.github.JDA-Applications:Kotlin-JDA:master-SNAPSHOT'
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.7"
 }
