@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
 class Codecov2discordApplication{
-    init {
-        println("aaa")
-    }
+
 }
 
 fun main(args: Array<String>) {
